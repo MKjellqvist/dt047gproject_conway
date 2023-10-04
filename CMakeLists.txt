@@ -10,6 +10,13 @@ find_package(SFML REQUIRED system window graphics audio)
 
 include_directories(${DOCOPT_INCLUDE_DIRS})
 
-add_executable(dt047gproject_conway main.cpp)
-target_link_libraries(dt047gproject_conway docopt)
-set(CMAKE_PREFIX_PATH /usr/share/SFML)
+add_executable(dt047gproject_conway main.cpp
+        Settings.cpp
+        Settings.h
+        Property.cpp
+        Property.h
+        BaseWindow.cpp
+        BaseWindow.h
+        ConwayGrid.cpp
+        ConwayGrid.h)
+target_link_libraries(dt047gproject_conway docopt sfml-graphics sfml-audio)
