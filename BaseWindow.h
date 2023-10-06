@@ -27,17 +27,6 @@ namespace conway {
 
     };
 
-    class ConwayWindow:public BaseWindow{
-    public:
-        /**
-         * Display size
-         * @param width
-         * @param height
-         */
-        ConwayWindow(size_t width, size_t height){
-
-        }
-    };
 } // conway
 
 #endif //DT047GPROJECT_CONWAY_BASEWINDOW_H

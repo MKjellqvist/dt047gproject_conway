@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BaseWindow.h"
+#include "ConwayWindow.h"
 
 /**
  * @mainpage
@@ -10,9 +11,11 @@
  * Startkonfigurationerna läggs upp i en katalog.
  */
 
+conway::ConwayGrid grid;
 
 int main() {
-    conway::ConwayWindow window(40, 40);
+    using conway::ConwayWindow;
+    ConwayWindow window(40, 40);
 }
 
 
