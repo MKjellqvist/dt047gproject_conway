@@ -19,5 +19,5 @@ add_executable(dt047gproject_conway main.cpp
         BaseWindow.h
         ConwayGrid.cpp
         ConwayGrid.h
-        ConwayWindow.cpp)
+        Window.cpp)
 target_link_libraries(dt047gproject_conway docopt sfml-graphics sfml-audio)

@@ -17,12 +17,12 @@ namespace conway {
     }
 
     class BaseWindow:public sf::RenderWindow {
-        explicit BaseWindow(sf::VideoMode mode, bool is_fullscreen);
 
     public:
+        explicit BaseWindow(sf::VideoMode mode, bool is_fullscreen);
         BaseWindow();
 
-    private:
+    protected:
         static sf::VideoMode GetMode(bool is_fullscreen = true, unsigned int width = 0, unsigned int height = 0);
 
     };
