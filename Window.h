@@ -9,6 +9,8 @@
 #include "ConwayGrid.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <unordered_map>
+#include <functional>
 
 namespace conway {
     template<typename Grid>
@@ -53,36 +55,22 @@ namespace conway {
         coord_type grid_min_y = 0;
         coord_type grid_min_x = 0;
 
+        bool handleEvents(sf::Event event) {
+            // throws std::bad_function_call on most event s
+            events[event.type](event);
+        }
+
         void play(){
+            sf::Event playEvent;
             while(isOpen()){
                 draw();
                 grid.tick();
-                sf::Event e;
-                if(pollEvent(e)){
-                    if(e.type == sf::Event::Closed){
-                        close();
-                    }
-                    if(e.type == sf::Event::KeyReleased){
-                        switch (e.key.code) {
-                            case sf::Keyboard::Key::Left:
-                                grid_min_x--;
-                                break;
-                            case sf::Keyboard::Key::Right:
-                                grid_min_x++;
-                                break;
-                            case sf::Keyboard::Key::Up:
-                                grid_min_y--;
-                                break;
-                            case sf::Keyboard::Key::Down:
-                                grid_min_y++;
-                                break;
-                        }
-                    }
-
-                }
+                while(pollEvent(playEvent))
+                    handleEvents(playEvent);
             }
         }
 
+        std::unordered_map<sf::Event::EventType, std::function<bool(sf::Event)>> events;
     };
 }
 #endif //DT047GPROJECT_CONWAY_WINDOW_H
