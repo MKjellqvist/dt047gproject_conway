@@ -22,7 +22,14 @@ namespace conway {
         using BaseWindow::draw;
     public:
         static const unsigned int FRAMRATE_LIMIT = 10;
-        /**
+
+        void setup_handlers() {
+            events[sf::Event::KeyPressed] == [](sf::Event e){
+
+            };
+        }
+
+/**
          * Display size
          * @param width
          * @param height
@@ -31,6 +38,7 @@ namespace conway {
       //  BaseWindow(BaseWindow::GetMode(false, 640, 480), false),
         width(width), height(height), grid(grid){
             setFramerateLimit(FRAMRATE_LIMIT);
+            setup_handlers();
         }
 
         void draw(){
@@ -55,9 +63,14 @@ namespace conway {
         coord_type grid_min_y = 0;
         coord_type grid_min_x = 0;
 
+        /**
+         * If there is a registered handler, call it.
+         * @param event
+         * @return true if the event was handled.
+         */
         bool handleEvents(sf::Event event) {
-            // throws std::bad_function_call on most event s
-            events[event.type](event);
+            // Call handler if it exists.
+            return events[event.type] && events[event.type](event);
         }
 
         void play(){
