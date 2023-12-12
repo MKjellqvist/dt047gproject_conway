@@ -1,0 +1,88 @@
+\hypertarget{Window_8h_source}{}\doxysection{Window.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by martin on 2023-\/10-\/05.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef DT047GPROJECT\_CONWAY\_WINDOW\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define DT047GPROJECT\_CONWAY\_WINDOW\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}BaseWindow.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}ConwayGrid.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <SFML/Graphics.hpp>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{namespace }conway \{}
+\DoxyCodeLine{14     \textcolor{keyword}{template}<\textcolor{keyword}{typename} Gr\textcolor{keywordtype}{id}>}
+\DoxyCodeLine{15     \textcolor{keyword}{class }\mbox{\hyperlink{classconway_1_1Window}{Window}} : \textcolor{keyword}{public} \mbox{\hyperlink{classconway_1_1BaseWindow}{conway::BaseWindow}} \{}
+\DoxyCodeLine{16         \textcolor{keyword}{using }coord\_type = int;}
+\DoxyCodeLine{17         \textcolor{keywordtype}{size\_t} height;}
+\DoxyCodeLine{18         \textcolor{keywordtype}{size\_t} width;}
+\DoxyCodeLine{19         \mbox{\hyperlink{structconway_1_1Grid}{Grid}} grid;}
+\DoxyCodeLine{20         \textcolor{keyword}{using }BaseWindow::draw;}
+\DoxyCodeLine{21     \textcolor{keyword}{public}:}
+\DoxyCodeLine{22         \textcolor{keyword}{static} \textcolor{keyword}{const} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} FRAMRATE\_LIMIT = 10;}
+\DoxyCodeLine{28         \mbox{\hyperlink{classconway_1_1Window_aeb1fabb8041d82c03c8e376013d0cd13}{Window}}(\textcolor{keywordtype}{size\_t} width, \textcolor{keywordtype}{size\_t} height, \mbox{\hyperlink{structconway_1_1Grid}{Grid}} grid):}
+\DoxyCodeLine{29         \mbox{\hyperlink{classconway_1_1BaseWindow}{BaseWindow}}(\mbox{\hyperlink{classconway_1_1BaseWindow}{BaseWindow}}::GetMode(false, 640, 480), false),}
+\DoxyCodeLine{30         width(width), height(height), grid(grid)\{}
+\DoxyCodeLine{31             setFramerateLimit(FRAMRATE\_LIMIT);}
+\DoxyCodeLine{32         \}}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34         \textcolor{keywordtype}{void} draw()\{}
+\DoxyCodeLine{35             \{}
+\DoxyCodeLine{36                 clear();}
+\DoxyCodeLine{37                 \textcolor{keyword}{auto} size = getSize();}
+\DoxyCodeLine{38                 \textcolor{keyword}{auto} height\_per\_life = size.y * 1.0f/ height;}
+\DoxyCodeLine{39                 \textcolor{keyword}{auto} width\_per\_life = size.x * 1.0f/ width;}
+\DoxyCodeLine{40                 \textcolor{keyword}{auto} rect = sf::RectangleShape(\{width\_per\_life, height\_per\_life\});}
+\DoxyCodeLine{41                 \textcolor{keywordflow}{for}(coord\_type cx = grid\_min\_x; cx < width + grid\_min\_x; cx++)\{}
+\DoxyCodeLine{42                     \textcolor{keywordflow}{for}(coord\_type cy = grid\_min\_y; cy < height + grid\_min\_y; cy++)\{}
+\DoxyCodeLine{43                         \textcolor{keywordflow}{if}(grid.isAlive(\{cx, cy\}))\{}
+\DoxyCodeLine{44                             rect.setPosition(cx * width\_per\_life -\/ grid\_min\_x * width\_per\_life, cy * height\_per\_life -\/ grid\_min\_y * height\_per\_life);}
+\DoxyCodeLine{45                             draw(rect);}
+\DoxyCodeLine{46                         \}}
+\DoxyCodeLine{47                     \}}
+\DoxyCodeLine{48                 \}}
+\DoxyCodeLine{49                 display();}
+\DoxyCodeLine{50             \}}
+\DoxyCodeLine{51         \}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53         coord\_type grid\_min\_y = 0;}
+\DoxyCodeLine{54         coord\_type grid\_min\_x = 0;}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56         \textcolor{keywordtype}{void} play()\{}
+\DoxyCodeLine{57             \textcolor{keywordflow}{while}(isOpen())\{}
+\DoxyCodeLine{58                 draw();}
+\DoxyCodeLine{59                 grid.tick();}
+\DoxyCodeLine{60                 sf::Event e;}
+\DoxyCodeLine{61                 \textcolor{keywordflow}{while}(pollEvent(e))\{}
+\DoxyCodeLine{62                     \textcolor{keywordflow}{if}(e.type == sf::Event::Closed)\{}
+\DoxyCodeLine{63                         close();}
+\DoxyCodeLine{64                     \}}
+\DoxyCodeLine{65                     \textcolor{keywordflow}{if}(e.type == sf::Event::KeyReleased)\{}
+\DoxyCodeLine{66                         \textcolor{keywordflow}{switch} (e.key.code) \{}
+\DoxyCodeLine{67                             \textcolor{keywordflow}{case} sf::Keyboard::Key::Left:}
+\DoxyCodeLine{68                                 grid\_min\_x-\/-\/;}
+\DoxyCodeLine{69                                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{70                             \textcolor{keywordflow}{case} sf::Keyboard::Key::Right:}
+\DoxyCodeLine{71                                 grid\_min\_x++;}
+\DoxyCodeLine{72                                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{73                             \textcolor{keywordflow}{case} sf::Keyboard::Key::Up:}
+\DoxyCodeLine{74                                 grid\_min\_y-\/-\/;}
+\DoxyCodeLine{75                                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{76                             \textcolor{keywordflow}{case} sf::Keyboard::Key::Down:}
+\DoxyCodeLine{77                                 grid\_min\_y++;}
+\DoxyCodeLine{78                                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{79                         \}}
+\DoxyCodeLine{80                     \}}
+\DoxyCodeLine{81 }
+\DoxyCodeLine{82                 \}}
+\DoxyCodeLine{83             \}}
+\DoxyCodeLine{84         \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \};}
+\DoxyCodeLine{87 \}}
+\DoxyCodeLine{88 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DT047GPROJECT\_CONWAY\_WINDOW\_H}}
+
+\end{DoxyCode}

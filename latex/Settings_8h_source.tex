@@ -1,0 +1,28 @@
+\hypertarget{Settings_8h_source}{}\doxysection{Settings.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by martin on 2023-\/10-\/03.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef DT047GPROJECT\_CONWAY\_SETTINGS\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define DT047GPROJECT\_CONWAY\_SETTINGS\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <ostream>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{namespace }conway\{}
+\DoxyCodeLine{12     \textcolor{keyword}{class }\mbox{\hyperlink{classconway_1_1Settings}{Settings}} \{}
+\DoxyCodeLine{13         \textcolor{keywordtype}{bool} is\_fullscreen;}
+\DoxyCodeLine{14         \textcolor{keywordtype}{size\_t} size\_x;}
+\DoxyCodeLine{15         \textcolor{keywordtype}{size\_t} size\_y;}
+\DoxyCodeLine{16         \textcolor{keyword}{friend} std::ostream\& operator << (std::ostream\& out, \textcolor{keyword}{const} \mbox{\hyperlink{classconway_1_1Settings}{Settings}}\& s)\{}
+\DoxyCodeLine{17             out << \textcolor{stringliteral}{"{}fullscreen: "{}} << s.is\_fullscreen << \textcolor{stringliteral}{"{}\(\backslash\)nX = "{}} << s.size\_x << \textcolor{stringliteral}{"{}\(\backslash\)nY = "{}} << s.size\_y << \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{18             \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{19         \}}
+\DoxyCodeLine{20     \};}
+\DoxyCodeLine{21 \}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DT047GPROJECT\_CONWAY\_SETTINGS\_H}}
+
+\end{DoxyCode}
