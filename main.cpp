@@ -84,6 +84,33 @@ std::string init_gosper =
         "                         X" "\n"
         "                       XXX";
 
+std::string big_gosper =
+        "                       XXX\n"
+        "                         X" "\n"
+        "              X         X" "\n"
+        "             X X" "\n"
+        " XX          XX X        X X" "\n"
+        " XX          XX XX      X  X" "\n"
+        "             XX X      XX          XX" "\n"
+        "             X X     XX   X        XX" "\n"
+        "              X        XX     XX" "\n"
+        "                        X  X    X" "\n"
+        "                         X X" "\n"
+        "\n"
+        "\n"
+        "\n"
+        "                         X X" "\n"
+        "                        X  X    X" "\n"
+        "              X        XX     XX" "\n"
+        "             X X     XX   X        XX" "\n"
+        "             XX X      XX          XX" "\n"
+        " XX          XX XX      X  X" "\n"
+        " XX          XX X        X X" "\n"
+        "             X X" "\n"
+        "              X         X" "\n"
+        "                         X" "\n"
+        "                       XXX";
+
 std::string init_heart =
         "    XX   XX        \n"
         "   X  XXX  X       \n"
@@ -94,7 +121,7 @@ std::string init_heart =
         "      X X          \n"
         "       X";
 
-void init_storage(std::string init = init_gun){
+void init_storage(std::string init = init_gun, conway::point position = {}){
     std::stringstream in(init);
     std::string line;
     for(auto row = 0; std::getline(in, line); row++){
@@ -109,12 +136,16 @@ void init_storage(std::string init = init_gun){
 }
 
 int main() {
-    init_storage(init_gosper);
+    auto reversegosper = "\n" + init_gosper;
+
+    init_storage(big_gosper);
+#ifndef NDEBUG
     std::cerr << unlimited_storage.get(0, 0) << "\n";
     std::cerr << unlimited_storage.min_x() << ", " << unlimited_storage.max_x() << "\n";
+#endif
     grid.storage = unlimited_storage;
 
-    Window<decltype(grid)> window(100, 100, grid);
+    Window<decltype(grid)> window(600, 400, grid);
 
     window.play();
 

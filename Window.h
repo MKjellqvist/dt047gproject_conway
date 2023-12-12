@@ -13,30 +13,46 @@
 #include <functional>
 
 namespace conway {
+    constexpr auto sfFontFilename = "/usr/share/fonts/opentype/cantarell/Cantarell-Thin.otf";
+
     template<typename Grid>
     class Window : public conway::BaseWindow {
         using coord_type = int;
-        size_t height;
-        size_t width;
+        coord_type height;
+        coord_type width;
         Grid grid;
+        sf::Font windowFont;
         using BaseWindow::draw;
     public:
-        static const unsigned int FRAMRATE_LIMIT = 10;
+        static const unsigned int FRAMRATE_LIMIT = 30;
 
         void setup_handlers() {
-            events[sf::Event::KeyPressed] == [this](sf::Event e){
+            events[sf::Event::KeyPressed] = [this](sf::Event e){
                 switch (e.key.code) {
-                    case sf::Keyboard::Key::Up:
-
-                        break;
-                    case sf::Keyboard::Key::Down:
-                        break;
-                    case sf::Keyboard::Key::Left:
-                        break;
-                    case sf::Keyboard::Key::Right:
-                        break;
+                case sf::Keyboard::Key::Left:
+                    grid_min_x--;
+                    break;
+                case sf::Keyboard::Key::Right:
+                    grid_min_x++;
+                    break;
+                case sf::Keyboard::Key::Up:
+                    grid_min_y--;
+                    break;
+                case sf::Keyboard::Key::Down:
+                    grid_min_y++;
+                    break;
                 }
+                return true;
             };
+            events[sf::Event::Closed] = [this](sf::Event e){
+                this->close();
+                return true;
+            };
+
+        }
+
+        void load_font() {
+            windowFont.loadFromFile(sfFontFilename);
         }
 
 /**
@@ -49,32 +65,38 @@ namespace conway {
         width(width), height(height), grid(grid){
             setFramerateLimit(FRAMRATE_LIMIT);
             setup_handlers();
+            load_font();
         }
 
         void draw(){
-            {
-                clear();
-                auto size = getSize();
-                auto height_per_life = size.y * 1.0f/ height;
-                auto width_per_life = size.x * 1.0f/ width;
-                auto rect = sf::RectangleShape({width_per_life, height_per_life});
-                for(coord_type cx = grid_min_x; cx < width + grid_min_x; cx++){
-                    for(coord_type cy = grid_min_y; cy < height + grid_min_y; cy++){
-                        if(grid.isAlive({cx, cy})){
-                            rect.setPosition(cx * width_per_life - grid_min_x * width_per_life, cy * height_per_life - grid_min_y * height_per_life);
-                            draw(rect);
-                        }
+            clear();
+            auto size = getSize();
+            auto height_per_life = size.y * 1.0f/ height;
+            auto width_per_life = size.x * 1.0f/ width;
+            auto rect = sf::RectangleShape({width_per_life, height_per_life});
+            auto alive = 0;
+            auto pixels = 0;
+            for(coord_type cx = grid_min_x; cx < width + grid_min_x; cx++){
+                for(coord_type cy = grid_min_y; cy < height + grid_min_y; cy++){
+                    if(grid.isAlive({cx, cy})){
+                        rect.setPosition(cx * width_per_life - grid_min_x * width_per_life, cy * height_per_life - grid_min_y * height_per_life);
+                        draw(rect);
                     }
                 }
-                display();
             }
+            std::string meta = "Alive " + std::to_string(alive) + "[" + std::to_string(grid_min_x) + ", " + std::to_string(grid_min_y) + "]"
+            "-[" + std::to_string(width + grid_min_x) + ", " + std::to_string(height + grid_min_y) + "]";
+            auto text = sf::Text(meta, windowFont, 50);
+            text.setFillColor(sf::Color::White);
+            draw(text);
+            display();
         }
 
         coord_type grid_min_y = 0;
         coord_type grid_min_x = 0;
 
         /**
-         * If there is a registered handler, call it.
+         * If there is a registered handler for the event type, call it.
          * @param event
          * @return true if the event was handled.
          */
