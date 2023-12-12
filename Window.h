@@ -24,8 +24,18 @@ namespace conway {
         static const unsigned int FRAMRATE_LIMIT = 10;
 
         void setup_handlers() {
-            events[sf::Event::KeyPressed] == [](sf::Event e){
+            events[sf::Event::KeyPressed] == [this](sf::Event e){
+                switch (e.key.code) {
+                    case sf::Keyboard::Key::Up:
 
+                        break;
+                    case sf::Keyboard::Key::Down:
+                        break;
+                    case sf::Keyboard::Key::Left:
+                        break;
+                    case sf::Keyboard::Key::Right:
+                        break;
+                }
             };
         }
 
