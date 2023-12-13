@@ -10,11 +10,18 @@
  *
  * Ointressant i sin rena form men kan bli intressant.
  *
- * Startkonfigurationerna läggs upp i en katalog.
+ * TODO: Startkonfigurationerna läggs upp i en katalog för att senare kunna väljas och manipuleras
+ * från gränssnittet.
+ *
+ * TODO: Översätt till en GApplication för en rimlig integration i gnome.
  */
 
 using namespace conway;
 namespace std{
+    /**
+     * Hash function for the unordered map in storage.
+     * Mangles the y coordinate and xors it onto p.x.
+     */
     template <>
     struct hash<point>{
         size_t operator()(const point& p) const{
@@ -25,6 +32,9 @@ namespace std{
     };
 
 }
+/**
+ * Container for life, no constraints on point positions.
+ */
 struct unordered_map_storage{
     std::unordered_set<point> uset;
     point topleft;
@@ -63,7 +73,9 @@ struct unordered_map_storage{
         }
     }
 } unlimited_storage;
-
+/**
+ * Grid for life points.
+ */
 Grid<unordered_map_storage> grid;
 
 std::string init_gun =

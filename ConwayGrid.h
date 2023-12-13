@@ -46,7 +46,7 @@ namespace conway {
         }
 
         /**
-         *
+         * Evolve each dot one round based on rules.
          * @return false if no evolution happened
          */
         bool tick(){

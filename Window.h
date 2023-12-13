@@ -13,8 +13,15 @@
 #include <functional>
 
 namespace conway {
+    /**
+     * Display font in UI. Bad choice for now.
+     */
     constexpr auto sfFontFilename = "/usr/share/fonts/opentype/cantarell/Cantarell-Thin.otf";
 
+    /**
+     * Ticks and display
+     * @tparam Grid
+     */
     template<typename Grid>
     class Window : public conway::BaseWindow {
         using coord_type = int;
@@ -25,35 +32,6 @@ namespace conway {
         using BaseWindow::draw;
     public:
         static const unsigned int FRAMRATE_LIMIT = 30;
-
-        void setup_handlers() {
-            events[sf::Event::KeyPressed] = [this](sf::Event e){
-                switch (e.key.code) {
-                case sf::Keyboard::Key::Left:
-                    grid_min_x--;
-                    break;
-                case sf::Keyboard::Key::Right:
-                    grid_min_x++;
-                    break;
-                case sf::Keyboard::Key::Up:
-                    grid_min_y--;
-                    break;
-                case sf::Keyboard::Key::Down:
-                    grid_min_y++;
-                    break;
-                }
-                return true;
-            };
-            events[sf::Event::Closed] = [this](sf::Event e){
-                this->close();
-                return true;
-            };
-
-        }
-
-        void load_font() {
-            windowFont.loadFromFile(sfFontFilename);
-        }
 
 /**
          * Display size
@@ -67,7 +45,10 @@ namespace conway {
             setup_handlers();
             load_font();
         }
-
+        /**
+         * Update screen, meta info and apply rules for dots/game.
+         * Call this for step by step updates.
+         */
         void draw(){
             clear();
             auto size = getSize();
@@ -104,7 +85,9 @@ namespace conway {
             // Call handler if it exists.
             return events[event.type] && events[event.type](event);
         }
-
+        /**
+         * Main event loop. Loops until window is closed.
+         */
         void play(){
             sf::Event playEvent;
             while(isOpen()){
@@ -113,6 +96,36 @@ namespace conway {
                 while(pollEvent(playEvent))
                     handleEvents(playEvent);
             }
+        }
+
+    private:
+        void setup_handlers() {
+            events[sf::Event::KeyPressed] = [this](sf::Event e){
+                switch (e.key.code) {
+                    case sf::Keyboard::Key::Left:
+                        grid_min_x--;
+                        break;
+                    case sf::Keyboard::Key::Right:
+                        grid_min_x++;
+                        break;
+                    case sf::Keyboard::Key::Up:
+                        grid_min_y--;
+                        break;
+                    case sf::Keyboard::Key::Down:
+                        grid_min_y++;
+                        break;
+                }
+                return true;
+            };
+            events[sf::Event::Closed] = [this](sf::Event e){
+                this->close();
+                return true;
+            };
+
+        }
+
+        void load_font() {
+            windowFont.loadFromFile(sfFontFilename);
         }
 
         std::unordered_map<sf::Event::EventType, std::function<bool(sf::Event)>> events;
