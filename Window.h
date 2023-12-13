@@ -72,7 +72,9 @@ namespace conway {
             draw(text);
             display();
         }
-
+        /**
+         * An offset to the displayed section of the grid.
+         */
         coord_type grid_min_y = 0;
         coord_type grid_min_x = 0;
 
@@ -121,9 +123,24 @@ namespace conway {
                 this->close();
                 return true;
             };
+            events[sf::Event::MouseButtonPressed] = [this](sf::Event e){
+                this->addDot({e.mouseButton.x, e.mouseButton.y});
+                return true;
+            };
 
         }
-
+        void addDot(point p){
+            // transform screen to grid coordinates.
+            // This should be simplified to
+            // point to_grid(coord_type x, coord_type y)
+            // point from_grid(point );
+            auto size = getSize();
+            auto height_per_life = size.y * 1.0f/ height;
+            auto width_per_life = size.x * 1.0f/ width;
+            auto col = p.x / width_per_life + grid_min_x;
+            auto row = p.y / height_per_life + grid_min_y;
+            grid.storage.set(col, row);
+        }
         void load_font() {
             windowFont.loadFromFile(sfFontFilename);
         }

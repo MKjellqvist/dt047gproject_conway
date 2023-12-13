@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['window_0',['Window',['../classconway_1_1Window.html#aeb1fabb8041d82c03c8e376013d0cd13',1,'conway::Window']]]
+  ['handleevents_0',['handleEvents',['../classconway_1_1Window.html#abe27b8a57d1d5e1a9ed4f94b4a75c06e',1,'conway::Window']]]
 ];

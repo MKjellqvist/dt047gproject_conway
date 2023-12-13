@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['my_20project_0',['My Project',['../index.html',1,'']]]
+  ['grid_0',['Grid',['../structconway_1_1Grid.html',1,'conway']]]
 ];

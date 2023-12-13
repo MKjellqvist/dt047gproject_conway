@@ -12,6 +12,12 @@
 namespace conway {
     using coordinate_type = int;
 
+    /**
+     * Rules functor. Default is
+     * - two neighbours -> remain alive,
+     * - three neighbours -> be born.
+     * - others -> dead.     *
+     */
     struct Rules{
         virtual bool operator ()(bool isAlive, int neighbors);
     };
@@ -46,7 +52,7 @@ namespace conway {
         }
 
         /**
-         * Evolve each dot one round based on rules.
+         * Evolve each dot one round based on Rules.
          * @return false if no evolution happened
          */
         bool tick(){

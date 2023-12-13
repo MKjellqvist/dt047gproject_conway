@@ -1,5 +1,9 @@
 \hypertarget{structconway_1_1Rules}{}\doxysection{conway\+::Rules Struct Reference}
 \label{structconway_1_1Rules}\index{conway::Rules@{conway::Rules}}
+
+
+{\ttfamily \#include $<$Conway\+Grid.\+h$>$}
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -7,6 +11,14 @@
 virtual bool {\bfseries operator()} (bool is\+Alive, int neighbors)
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{structconway_1_1Rules}{Rules}} functor. Default is
+\begin{DoxyItemize}
+\item two neighbours -\/\texorpdfstring{$>$}{>} remain alive,
+\item three neighbours -\/\texorpdfstring{$>$}{>} be born.
+\item others -\/\texorpdfstring{$>$}{>} dead. $\ast$ 
+\end{DoxyItemize}
 
 The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

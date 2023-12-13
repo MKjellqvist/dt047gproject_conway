@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hash_3c_20point_20_3e_0',['hash&lt; point &gt;',['../structstd_1_1hash_3_01point_01_4.html',1,'std']]]
+  ['draw_0',['draw',['../classconway_1_1Window.html#a427f4a96b25c447b2d15ec82d0693372',1,'conway::Window']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tick_0',['tick',['../structconway_1_1Grid.html#aee1cef84327dad18bbd3c8b11b0d00b9',1,'conway::Grid']]]
+  ['draw_0',['draw',['../classconway_1_1Window.html#a427f4a96b25c447b2d15ec82d0693372',1,'conway::Window']]]
 ];

@@ -2,8 +2,11 @@
 \label{classconway_1_1Window}\index{conway::Window$<$ Grid $>$@{conway::Window$<$ Grid $>$}}
 
 
-Inheritance diagram for conway\+::Window\texorpdfstring{$<$}{<} Grid \texorpdfstring{$>$}{>}\+:
-\nopagebreak
+{\ttfamily \#include $<$Window.\+h$>$}
+
+
+
+Inheritance diagram for conway\+::Window\texorpdfstring{$<$}{<} Grid \texorpdfstring{$>$}{>}\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +15,7 @@ Inheritance diagram for conway\+::Window\texorpdfstring{$<$}{<} Grid \texorpdfst
 \end{figure}
 
 
-Collaboration diagram for conway\+::Window\texorpdfstring{$<$}{<} Grid \texorpdfstring{$>$}{>}\+:
-\nopagebreak
+Collaboration diagram for conway\+::Window\texorpdfstring{$<$}{<} Grid \texorpdfstring{$>$}{>}\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,11 +27,11 @@ Collaboration diagram for conway\+::Window\texorpdfstring{$<$}{<} Grid \texorpdf
 \item 
 \mbox{\hyperlink{classconway_1_1Window_aeb1fabb8041d82c03c8e376013d0cd13}{Window}} (size\+\_\+t width, size\+\_\+t height, \mbox{\hyperlink{structconway_1_1Grid}{Grid}} grid)
 \item 
-\mbox{\Hypertarget{classconway_1_1Window_a427f4a96b25c447b2d15ec82d0693372}\label{classconway_1_1Window_a427f4a96b25c447b2d15ec82d0693372}} 
-void {\bfseries draw} ()
+void \mbox{\hyperlink{classconway_1_1Window_a427f4a96b25c447b2d15ec82d0693372}{draw}} ()
 \item 
-\mbox{\Hypertarget{classconway_1_1Window_a2cad0f35e765470301ea7012c856bdc5}\label{classconway_1_1Window_a2cad0f35e765470301ea7012c856bdc5}} 
-void {\bfseries play} ()
+bool \mbox{\hyperlink{classconway_1_1Window_abe27b8a57d1d5e1a9ed4f94b4a75c06e}{handle\+Events}} (sf\+::\+Event event)
+\item 
+void \mbox{\hyperlink{classconway_1_1Window_a2cad0f35e765470301ea7012c856bdc5}{play}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -44,9 +46,19 @@ coord\+\_\+type {\bfseries grid\+\_\+min\+\_\+x} = 0
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{classconway_1_1Window_a293a944465730d0e9464eae3e8f143cd}\label{classconway_1_1Window_a293a944465730d0e9464eae3e8f143cd}} 
-static const unsigned int {\bfseries FRAMRATE\+\_\+\+LIMIT} = 10
+static const unsigned int {\bfseries FRAMRATE\+\_\+\+LIMIT} = 30
 \end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename \mbox{\hyperlink{structconway_1_1Grid}{Grid}}$>$\newline
+class conway\+::\+Window$<$ Grid $>$}
+Ticks and display 
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \mbox{\hyperlink{structconway_1_1Grid}{Grid}}} & \\
+\hline
+\end{DoxyTemplParams}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -65,6 +77,38 @@ Display size
 \hline
 \end{DoxyParams}
 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classconway_1_1Window_a427f4a96b25c447b2d15ec82d0693372}\label{classconway_1_1Window_a427f4a96b25c447b2d15ec82d0693372}} 
+\index{conway::Window$<$ Grid $>$@{conway::Window$<$ Grid $>$}!draw@{draw}}
+\index{draw@{draw}!conway::Window$<$ Grid $>$@{conway::Window$<$ Grid $>$}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily template$<$typename \mbox{\hyperlink{structconway_1_1Grid}{Grid}} $>$ \\
+void \mbox{\hyperlink{classconway_1_1Window}{conway\+::\+Window}}$<$ \mbox{\hyperlink{structconway_1_1Grid}{Grid}} $>$\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Update screen, meta info and apply rules for dots/game. Call this for step by step updates. \mbox{\Hypertarget{classconway_1_1Window_abe27b8a57d1d5e1a9ed4f94b4a75c06e}\label{classconway_1_1Window_abe27b8a57d1d5e1a9ed4f94b4a75c06e}} 
+\index{conway::Window$<$ Grid $>$@{conway::Window$<$ Grid $>$}!handleEvents@{handleEvents}}
+\index{handleEvents@{handleEvents}!conway::Window$<$ Grid $>$@{conway::Window$<$ Grid $>$}}
+\doxysubsubsection{\texorpdfstring{handleEvents()}{handleEvents()}}
+{\footnotesize\ttfamily template$<$typename \mbox{\hyperlink{structconway_1_1Grid}{Grid}} $>$ \\
+bool \mbox{\hyperlink{classconway_1_1Window}{conway\+::\+Window}}$<$ \mbox{\hyperlink{structconway_1_1Grid}{Grid}} $>$\+::handle\+Events (\begin{DoxyParamCaption}\item[{sf\+::\+Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+If there is a registered handler for the event type, call it. 
+\begin{DoxyParams}{Parameters}
+{\em event} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the event was handled. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classconway_1_1Window_a2cad0f35e765470301ea7012c856bdc5}\label{classconway_1_1Window_a2cad0f35e765470301ea7012c856bdc5}} 
+\index{conway::Window$<$ Grid $>$@{conway::Window$<$ Grid $>$}!play@{play}}
+\index{play@{play}!conway::Window$<$ Grid $>$@{conway::Window$<$ Grid $>$}}
+\doxysubsubsection{\texorpdfstring{play()}{play()}}
+{\footnotesize\ttfamily template$<$typename \mbox{\hyperlink{structconway_1_1Grid}{Grid}} $>$ \\
+void \mbox{\hyperlink{classconway_1_1Window}{conway\+::\+Window}}$<$ \mbox{\hyperlink{structconway_1_1Grid}{Grid}} $>$\+::play (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Main event loop. Loops until window is closed. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

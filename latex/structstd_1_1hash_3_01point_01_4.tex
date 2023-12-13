@@ -1,11 +1,35 @@
 \hypertarget{structstd_1_1hash_3_01point_01_4}{}\doxysection{std\+::hash\texorpdfstring{$<$}{<} point \texorpdfstring{$>$}{>} Struct Reference}
 \label{structstd_1_1hash_3_01point_01_4}\index{std::hash$<$ point $>$@{std::hash$<$ point $>$}}
+
+
+Hash implementation for the unordered map in storage.  
+
+
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{structstd_1_1hash_3_01point_01_4_aa22191d992c601c779eeb05271a7c23e}\label{structstd_1_1hash_3_01point_01_4_aa22191d992c601c779eeb05271a7c23e}} 
-size\+\_\+t {\bfseries operator()} (const \mbox{\hyperlink{structconway_1_1point}{point}} \&p) const
+size\+\_\+t \mbox{\hyperlink{structstd_1_1hash_3_01point_01_4_aa22191d992c601c779eeb05271a7c23e}{operator()}} (const \mbox{\hyperlink{structconway_1_1point}{point}} \&p) const
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Hash implementation for the unordered map in storage. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structstd_1_1hash_3_01point_01_4_aa22191d992c601c779eeb05271a7c23e}\label{structstd_1_1hash_3_01point_01_4_aa22191d992c601c779eeb05271a7c23e}} 
+\index{std::hash$<$ point $>$@{std::hash$<$ point $>$}!operator()@{operator()}}
+\index{operator()@{operator()}!std::hash$<$ point $>$@{std::hash$<$ point $>$}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily size\+\_\+t std\+::hash$<$ \mbox{\hyperlink{structconway_1_1point}{point}} $>$\+::operator() (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structconway_1_1point}{point}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Mangles the y coordinate and xors it onto p.\+x. 
+\begin{DoxyParams}{Parameters}
+{\em p} & point to hash. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The hash 
+\end{DoxyReturn}
 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}

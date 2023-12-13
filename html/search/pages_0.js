@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['my_20project_0',['My Project',['../index.html',1,'']]]
+  ['conways_20game_20of_20life_0',['Conways Game of Life',['../index.html',1,'']]]
 ];

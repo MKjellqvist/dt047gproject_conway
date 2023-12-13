@@ -6,9 +6,16 @@
 
 /**
  * @mainpage
+ *
  * Projektimplementation i DT047G. Conways game of life.
  *
  * Ointressant i sin rena form men kan bli intressant.
+ *
+ * Katalog med startkonfigurationer.
+ *
+ * Lagringsimplementation med std::unordered_map<point> och Grid<unordered_map_storage>
+ *
+ * SRP i en arvshierarki.
  *
  * TODO: Startkonfigurationerna läggs upp i en katalog för att senare kunna väljas och manipuleras
  * från gränssnittet.
@@ -19,11 +26,15 @@
 using namespace conway;
 namespace std{
     /**
-     * Hash function for the unordered map in storage.
-     * Mangles the y coordinate and xors it onto p.x.
+     * @brief Hash implementation for the unordered map in storage.
      */
     template <>
     struct hash<point>{
+        /**
+         * Mangles the y coordinate and xors it onto p.x.
+         * @param p point to hash.
+         * @return The hash
+         */
         size_t operator()(const point& p) const{
             auto half_bits = sizeof (size_t) * 4;
             auto y_flipped = p.y >> half_bits | p.y << half_bits;
